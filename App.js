@@ -5,12 +5,9 @@ import * as SplashScreen from 'expo-splash-screen';
 import {useCallback, useEffect, useState} from "react";
 import * as Font from "expo-font";
 import {Provider} from "react-redux";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import {AppNavigator} from "./navigation/AppNavigator"
 import {store} from "./store/store";
-
-// AsyncStorage.clear();
 
 SplashScreen.preventAutoHideAsync();
 LogBox.ignoreLogs(['AsyncStorage has been extracted']);

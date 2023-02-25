@@ -1,13 +1,15 @@
 import {StyleSheet, Text, TextInput, View} from "react-native";
 
 import {colors} from "../../constants/colors";
-import {FontAwesome} from "@expo/vector-icons";
+import {useState} from "react";
 
 export const Input = (props) => {
+  const [value, setValue] = useState(props.initialValue);
   const {icon, label, iconSize = 15, errorText, onInputChanged, id = "", ...overProps} = props;
 
   const onChangeText = text => {
-    onInputChanged(id, text)
+    setValue(text);
+    onInputChanged(id, text);
   }
 
   return (
@@ -15,7 +17,12 @@ export const Input = (props) => {
       {label && <Text style={styles.label}>{label}</Text>}
       <View style={styles.inputContainer}>
         {icon && <props.iconPack name={icon} size={iconSize} style={styles.icon}/>}
-        <TextInput {...overProps} style={styles.input} onChangeText={onChangeText} />
+        <TextInput
+          {...overProps}
+          value={value}
+          style={styles.input}
+          onChangeText={onChangeText}
+        />
       </View>
       {errorText && <View style={styles.errorContainer}>
         <Text style={styles.errorText}>{errorText}</Text>

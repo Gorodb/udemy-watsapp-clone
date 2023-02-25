@@ -1,4 +1,4 @@
-import {validateEmail, validatePassword, validateString} from "../validationConstraint";
+import {validateEmail, validatePassword, validateString, validateLength} from "../validationConstraint";
 
 export const validateInput = (inputId, inputValue) => {
   switch (inputId) {
@@ -9,6 +9,8 @@ export const validateInput = (inputId, inputValue) => {
       return validateEmail(inputId, inputValue)
     case "password":
       return validatePassword(inputId, inputValue)
+    case "about":
+      return validateLength(inputId, inputValue, 0,150, true)
     default:
       return undefined
   }

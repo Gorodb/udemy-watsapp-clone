@@ -7,6 +7,7 @@ export const colors = {
   textColor: "#1c1e21",
   link: "#3498db",
   errorText: "#e06762",
-  primary: "#32d48e"
-
+  primary: "#32d48e",
+  red: "#e06762",
+  redVivid: "#e74c3e",
 }

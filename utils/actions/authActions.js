@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {set} from 'firebase/database';
+import {set, update} from 'firebase/database';
 import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from 'firebase/auth';
 
 import {auth, userRef} from "../firebaseHelper";
@@ -80,11 +80,11 @@ export const userLogout = () => {
   }
 }
 
-const createUser = async (firstName, lastname, email, uid) => {
-  const fullName = `${firstName} ${lastname}`.toLowerCase();
+const createUser = async (firstName, lastName, email, uid) => {
+  const fullName = `${firstName} ${lastName}`.toLowerCase();
   const userData = {
     firstName,
-    lastname,
+    lastName,
     fullName,
     email,
     uid,
@@ -93,6 +93,11 @@ const createUser = async (firstName, lastname, email, uid) => {
 
   await set(userRef(uid), userData);
   return userData;
+}
+
+export const updateSignedInUserData = async (uid, newData) => {
+  const fullName = `${newData.firstName} ${newData.lastName}`.toLowerCase();
+  await update(userRef(uid), {...newData, fullName});
 }
 
 const saveDataToStorage = async (token, uid, expiryDate) => {
